@@ -91,6 +91,13 @@ export function Hero() {
           <h1 className="text-4xl font-extrabold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
             Escolha de Produtos que <span className="text-gradient-primary">Realmente Vendem</span>
           </h1>
+          <Lead className="mt-8 max-w-2xl text-foreground/85">
+            Antes de começar qualquer divulgação, você precisa ter em mãos um{" "}
+            <Strong>produto campeão</Strong> — aquele que praticamente se vende sozinho. A escolha
+            certa do produto é o alicerce de todo o seu sucesso como afiliado. Produtos ruins geram
+            frustração, cancelamentos e desmotivação. Já os produtos certos trazem vendas
+            recorrentes, avaliações positivas e clientes satisfeitos que indicam para outros.
+          </Lead>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <CtaButton />
             <Button asChild variant="ctaOutline" size="xl">
@@ -116,17 +123,7 @@ export function Hero() {
 export function Produtos() {
   return (
     <Section id="conteudo">
-      <div className="max-w-4xl">
-        <Lead>
-          Antes de começar qualquer divulgação, você precisa ter em mãos um{" "}
-          <Strong>produto campeão</Strong> — aquele que praticamente se vende sozinho. A escolha
-          certa do produto é o alicerce de todo o seu sucesso como afiliado. Produtos ruins geram
-          frustração, cancelamentos e desmotivação. Já os produtos certos trazem vendas
-          recorrentes, avaliações positivas e clientes satisfeitos que indicam para outros.
-        </Lead>
-      </div>
-
-      <div className="mt-12 grid gap-5 md:grid-cols-6">
+      <div className="grid gap-5 md:grid-cols-6">
         {criteria.map((c, i) => (
           <div
             key={c.title}
