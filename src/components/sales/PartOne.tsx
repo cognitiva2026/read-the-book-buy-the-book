@@ -89,7 +89,7 @@ export function Hero() {
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 pb-16 pt-16 md:px-8 md:pb-20 md:pt-24 lg:grid-cols-[1.2fr_0.8fr]">
         <div>
           <h1 className="text-4xl font-extrabold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
-            Do Zero à <span className="text-gradient-primary">Primeira Venda</span>
+            Teste de <span className="text-gradient-primary">alteração</span>
           </h1>
           <Lead className="mt-8 max-w-2xl text-foreground/85">
             Antes de começar qualquer divulgação, você precisa ter em mãos um{" "}
