@@ -86,7 +86,7 @@ export function Hero() {
         className="absolute inset-0 h-full w-full object-cover opacity-45"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 pb-20 pt-16 md:px-8 md:pb-28 md:pt-24 lg:grid-cols-[1.2fr_0.8fr]">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 pb-16 pt-16 md:px-8 md:pb-20 md:pt-24 lg:grid-cols-[1.2fr_0.8fr]">
         <div>
           <h1 className="text-4xl font-extrabold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
             Escolha de Produtos que <span className="text-gradient-primary">Realmente Vendem</span>
@@ -112,7 +112,7 @@ export function Hero() {
             alt="Capa do ebook Escolha de Produtos que Realmente Vendem"
             width={1024}
             height={1280}
-            className="relative animate-float-slow drop-shadow-2xl"
+            className="relative animate-float-slow mask-fade-edges"
           />
         </div>
       </div>
@@ -122,7 +122,7 @@ export function Hero() {
 
 export function Produtos() {
   return (
-    <Section id="conteudo">
+    <Section id="conteudo" className="pt-4 md:pt-8">
       <div className="grid gap-5 md:grid-cols-6">
         {criteria.map((c, i) => (
           <div
