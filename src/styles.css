@@ -200,3 +200,7 @@
   mask-image: radial-gradient(ellipse 70% 72% at 50% 50%, black 62%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 70% 72% at 50% 50%, black 62%, transparent 100%);
 }
+
+#lovable-badge {
+  display: none !important;
+}
