@@ -9,7 +9,7 @@ export function CtaButton({ className }: { className?: string }) {
   return (
     <Button asChild variant="cta" size="xl" className={className}>
       <a href={CHECKOUT_URL}>
-        Quero Começar Agora
+        Quero aprender a ganhar dinheiro agora
         <ArrowRight />
       </a>
     </Button>
