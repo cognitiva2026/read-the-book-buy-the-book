@@ -109,7 +109,7 @@ export function Hero() {
           <div className="absolute inset-6 rounded-full bg-primary/40 blur-3xl" />
           <img
             src={ebookCover}
-            alt="Capa do ebook Escolha de Produtos que Realmente Vendem"
+            alt="Capa do ebook com o título Tenha acesso aos Produtos que Realmente Vendem!"
             width={1024}
             height={1280}
             className="relative animate-float-slow mask-fade-edges"
