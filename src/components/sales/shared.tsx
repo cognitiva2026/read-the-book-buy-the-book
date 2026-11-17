@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 export function CtaButton({ className }: { className?: string }) {
   return (
-    <Button asChild variant="cta" size="xl" className={className}>
+    <Button asChild variant="cta" size="xl" className={cn("max-w-full whitespace-normal text-center", className)}>
       <a href={CHECKOUT_URL}>
         Quero aprender a ganhar dinheiro agora
         <ArrowRight />
