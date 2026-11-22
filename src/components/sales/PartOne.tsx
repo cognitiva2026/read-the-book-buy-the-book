@@ -231,11 +231,6 @@ export function Divulgar() {
   return (
     <Section className="bg-ember">
       <SectionTitle>Onde você irá divulgar de forma TOTALMENTE GRÁTIS:</SectionTitle>
-      <Lead className="mt-6 max-w-4xl">
-        A boa notícia é que você <Strong>NÃO precisa aparecer</Strong> se não quiser. Existem
-        estratégias inteligentes que permitem vender sem expor seu rosto, sua voz ou sua
-        identidade. O foco está no produto, não em você.
-      </Lead>
 
       <div className="mt-14 flex items-center gap-4">
         <IconBadge>
