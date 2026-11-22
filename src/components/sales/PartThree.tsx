@@ -127,7 +127,7 @@ const kit = [
 export function SemSeguidores() {
   return (
     <Section className="bg-ember">
-      <SectionTitle>Como Aumentar Vendas sem Ter Seguidores</SectionTitle>
+      <SectionTitle>Venda muito mesmo com perfil pequeno</SectionTitle>
       <Lead className="mt-6 max-w-4xl">
         O maior erro dos iniciantes é achar que precisam de milhares de seguidores para vender. A
         verdade é que <Highlight>muitos afiliados faturam alto com perfis pequenos</Highlight>{" "}
