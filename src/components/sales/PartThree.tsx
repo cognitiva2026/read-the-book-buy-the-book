@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 import { Check, Search, Target, TrendingUp, X } from "lucide-react";
 
 import celebrating from "@/assets/celebrating.jpg.asset.json";
@@ -125,6 +127,50 @@ const kit = [
 ];
 
 export function SemSeguidores() {
+  const secretsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = secretsRef.current;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!grid || reducedMotion.matches || !("IntersectionObserver" in window)) return;
+
+    const animations: Animation[] = [];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const item = entry.target as HTMLElement;
+          if (!reducedMotion.matches && typeof item.animate === "function") {
+            animations.push(item.animate(
+              [
+                { opacity: 0, transform: "translateY(28px)" },
+                { opacity: 1, transform: "translateY(0)" },
+              ],
+              {
+                duration: 1100,
+                delay: (Number(item.dataset.index) % 2) * 220,
+                easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+                fill: "backwards",
+              },
+            ));
+          }
+          observer.unobserve(item);
+        });
+      },
+      { threshold: 0.2 },
+    );
+    Array.from(grid.children).forEach((item) => observer.observe(item));
+    const stopAnimations = () => {
+      if (reducedMotion.matches) animations.forEach((animation) => animation.cancel());
+    };
+    reducedMotion.addEventListener("change", stopAnimations);
+    return () => {
+      observer.disconnect();
+      animations.forEach((animation) => animation.cancel());
+      reducedMotion.removeEventListener("change", stopAnimations);
+    };
+  }, []);
+
   return (
     <Section className="bg-ember">
       <SectionTitle>Venda muito mesmo com perfil pequeno</SectionTitle>
@@ -136,9 +182,9 @@ export function SemSeguidores() {
       </Lead>
 
       <SubTitle className="mt-16">Segredos dos Afiliados que Vendem Muito com Poucos Seguidores</SubTitle>
-      <div className="mt-8 grid gap-x-10 gap-y-8 md:grid-cols-2">
+      <div ref={secretsRef} className="mt-8 grid gap-x-10 gap-y-8 md:grid-cols-2">
         {secrets.map((s, i) => (
-          <div key={s.title} className="flex gap-5">
+          <div key={s.title} data-index={i} className="flex gap-5">
             <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-border bg-secondary font-display text-lg font-bold text-foreground">
               {i + 1}
             </span>
