@@ -242,7 +242,10 @@ export function Divulgar() {
 
       <div className="mt-10 grid gap-5 md:grid-cols-3">
         {tiktokSteps.map((s, i) => (
-          <div key={s.title} className="rounded-xl border border-border bg-card p-7 shadow-card">
+          <div
+            key={s.title}
+            className="rounded-xl border border-border bg-card p-7 shadow-card transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:border-primary/70 hover:bg-secondary/60 hover:shadow-lg hover:shadow-primary/10 motion-safe:hover:-translate-y-2 motion-reduce:transition-none"
+          >
             <span className="font-display text-5xl font-extrabold text-primary">{i + 1}</span>
             <h4 className="mt-4 text-lg font-bold text-foreground">{s.title}</h4>
             <p className="mt-3 leading-relaxed text-muted-foreground">{s.text}</p>
