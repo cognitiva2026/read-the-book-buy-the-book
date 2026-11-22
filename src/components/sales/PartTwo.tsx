@@ -1,7 +1,5 @@
 import { BadgePercent, Hand, MessageCircle, PackageX, Users } from "lucide-react";
 
-import whatsappPhone from "@/assets/whatsapp-phone.jpg.asset.json";
-
 import { Callout, IconBadge, Lead, Quote, Section, SectionTitle, Strong, SubTitle } from "./shared";
 
 const whatsappPlaces = [
@@ -73,30 +71,15 @@ const videoSteps = [
 export function WhatsApp() {
   return (
     <Section>
-      <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="relative">
-          <div className="absolute -inset-4 rounded-3xl bg-primary/25 blur-3xl" />
-          <img
-            src={whatsappPhone.url}
-            alt="Celular mostrando conversa no WhatsApp"
-            loading="lazy"
-            width={1024}
-            height={1024}
-            className="relative aspect-square w-full rounded-2xl border border-border object-cover shadow-card"
-          />
-        </div>
-        <div>
-          <SectionTitle>WhatsApp: Sua Máquina Silenciosa de Vendas</SectionTitle>
-          <Lead className="mt-6">
-            O WhatsApp é uma ferramenta subestimada, mas extremamente poderosa para afiliados. É
-            gratuito, todo mundo usa diariamente, e permite divulgação direta sem algoritmos
-            atrapalhando. Você atinge as pessoas exatamente onde elas já estão — e elas verificam o
-            WhatsApp dezenas de vezes por dia.
-          </Lead>
-        </div>
-      </div>
+      <SectionTitle>WhatsApp: Sua Máquina Silenciosa de Vendas</SectionTitle>
+      <Lead className="mt-6 max-w-4xl">
+        O WhatsApp é uma ferramenta subestimada, mas extremamente poderosa para afiliados. É
+        gratuito, todo mundo usa diariamente, e permite divulgação direta sem algoritmos
+        atrapalhando. Você atinge as pessoas exatamente onde elas já estão — e elas verificam o
+        WhatsApp dezenas de vezes por dia.
+      </Lead>
 
-      <SubTitle className="mt-20">Onde e Como Divulgar no WhatsApp</SubTitle>
+      <SubTitle className="mt-14">Onde e Como Divulgar no WhatsApp</SubTitle>
       <div className="mt-8 grid gap-5 md:grid-cols-2">
         {whatsappPlaces.map((w) => (
           <div
