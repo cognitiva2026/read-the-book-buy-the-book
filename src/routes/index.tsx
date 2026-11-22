@@ -47,7 +47,7 @@ function Index() {
       <Erros />
       <Oferta />
       <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
-        Escolha de Produtos que Realmente Vendem
+        LandingPage produzida por Cognitiva Marketing Digital - 2027
       </footer>
     </main>
   );
