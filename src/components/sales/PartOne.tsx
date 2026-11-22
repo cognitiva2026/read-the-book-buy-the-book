@@ -216,10 +216,13 @@ export function Produtos() {
         ))}
       </ul>
 
-      <Lead className="mt-12 max-w-4xl">
-        Lembre-se: um produto campeão já tem demanda comprovada. Você não precisa convencer ninguém
-        a comprar — apenas precisa mostrar que ele existe e está disponível.
-      </Lead>
+      <aside className="mt-10 rounded-xl border border-primary/40 border-l-4 border-l-primary bg-primary/10 p-5 shadow-card md:p-7">
+        <p className="max-w-4xl text-base leading-relaxed text-foreground md:text-lg">
+          <strong className="font-extrabold text-primary-glow">Lembre-se:</strong>{" "}
+          <Strong>um produto campeão já tem demanda comprovada.</Strong> Você não precisa convencer
+          ninguém a comprar — <Strong>apenas precisa mostrar que ele existe e está disponível.</Strong>
+        </p>
+      </aside>
     </Section>
   );
 }
