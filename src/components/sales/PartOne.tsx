@@ -210,18 +210,20 @@ export function Produtos() {
 
   return (
     <Section id="conteudo" className="pt-4 md:pt-8">
-      <div ref={cardsRef} className="grid auto-rows-fr gap-5 md:grid-cols-6 md:gap-6">
+      <div ref={cardsRef} className="grid auto-rows-fr gap-3 md:grid-cols-6">
         {criteria.map((c, i) => (
           <div
             key={c.title}
             data-index={i}
-            className={`h-full rounded-xl border border-border bg-secondary/60 p-7 shadow-card transition-transform duration-300 motion-safe:hover:-translate-y-1 motion-reduce:transition-none md:col-span-2 ${
+            className={`h-full rounded-xl border border-border bg-secondary/60 p-4 shadow-card transition-transform duration-300 motion-safe:hover:-translate-y-1 motion-reduce:transition-none md:col-span-2 ${
               i === 3 ? "md:col-start-2" : i === 4 ? "md:col-start-4" : ""
             }`}
           >
-            <IconBadge>{c.icon}</IconBadge>
-            <h3 className="mt-6 text-lg font-bold text-foreground md:text-xl">{c.title}</h3>
-            <p className="mt-3 leading-relaxed text-muted-foreground">{c.text}</p>
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground [&_svg]:size-4">
+              {c.icon}
+            </span>
+            <h3 className="mt-3 text-base font-bold leading-snug text-foreground">{c.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.text}</p>
           </div>
         ))}
       </div>
