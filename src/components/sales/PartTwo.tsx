@@ -114,7 +114,7 @@ export function WhatsApp() {
 export function Instagram() {
   return (
     <Section className="bg-ember">
-      <SectionTitle>Instagram: Transforme Stories e Reels em Vendas</SectionTitle>
+      <SectionTitle>Instagram: Todo mundo usa!</SectionTitle>
       <Lead className="mt-6 max-w-4xl">
         O Instagram continua sendo uma plataforma essencial para afiliados, especialmente porque
         permite combinar diferentes formatos: Stories para conexão diária e Reels para alcance
