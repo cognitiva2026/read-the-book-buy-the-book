@@ -175,7 +175,7 @@ export function Instagram() {
 export function EstruturaVideo() {
   return (
     <Section>
-      <SectionTitle>Estrutura PERFEITA de Vídeo que Vende Sozinho</SectionTitle>
+      <SectionTitle>Use a ESTRUTURA PERFEITA de vídeo que vende sozinho!</SectionTitle>
       <Lead className="mt-6 max-w-4xl">
         Existe uma fórmula testada e aprovada que afiliados profissionais usam para criar vídeos que
         convertem visualizações em vendas. Essa estrutura é baseada em psicologia de consumo e foi
