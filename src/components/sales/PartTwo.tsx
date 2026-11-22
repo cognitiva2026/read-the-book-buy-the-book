@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 import { BadgePercent, Hand, MessageCircle, PackageX, Users } from "lucide-react";
 
 import { Callout, IconBadge, Lead, Quote, Section, SectionTitle, Strong, SubTitle } from "./shared";
@@ -19,12 +21,6 @@ const whatsappPlaces = [
     title: "Família (sim, funciona!)",
     text: "Não subestime o poder da família. Eles confiam em você, compartilham suas mensagens e fazem propaganda boca a boca naturalmente.",
   },
-];
-
-const whatsappPosts = [
-  ["Prints de avaliações", "mostre comentários reais de clientes satisfeitos"],
-  ["Vídeos curtos", "demonstrações rápidas do produto em ação"],
-  ["Ofertas com prazo", 'crie senso de urgência: "Só até hoje!", "Últimas unidades!"'],
 ];
 
 const stories = [
@@ -69,16 +65,63 @@ const videoSteps = [
 ];
 
 export function WhatsApp() {
+  const placesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = placesRef.current;
+    if (!grid || !("IntersectionObserver" in window)) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const animations = new Map<HTMLElement, Animation>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const item = entry.target as HTMLElement;
+          if (reducedMotion.matches || typeof item.animate !== "function") return;
+          const visible = entry.isIntersecting && entry.intersectionRatio >= 0.1;
+          const previous = animations.get(item);
+          const opacity = getComputedStyle(item).opacity;
+          const transform = getComputedStyle(item).transform;
+          previous?.cancel();
+          animations.set(item, item.animate(
+            [
+              { opacity, transform },
+              { opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(24px)" },
+            ],
+            {
+              duration: visible ? 850 : 450,
+              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+              fill: "both",
+            },
+          ));
+        });
+      },
+      { threshold: [0, 0.1] },
+    );
+    Array.from(grid.children).forEach((item) => observer.observe(item));
+    const stopAnimations = () => {
+      if (reducedMotion.matches) {
+        animations.forEach((animation) => animation.cancel());
+        animations.clear();
+      }
+    };
+    reducedMotion.addEventListener("change", stopAnimations);
+    return () => {
+      observer.disconnect();
+      animations.forEach((animation) => animation.cancel());
+      reducedMotion.removeEventListener("change", stopAnimations);
+    };
+  }, []);
+
   return (
     <Section>
       <SectionTitle>Whatsapp: Uma máquina de vendas!</SectionTitle>
 
       <SubTitle className="mt-14">Onde e Como Divulgar no WhatsApp:</SubTitle>
-      <div className="mt-8 grid gap-5 md:grid-cols-2">
+      <div ref={placesRef} className="mt-8 grid gap-5 md:grid-cols-2">
         {whatsappPlaces.map((w) => (
+          <div key={w.title}>
           <div
-            key={w.title}
-            className="flex gap-5 rounded-xl border border-border bg-card p-7 shadow-card transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:border-primary/70 hover:bg-secondary/60 hover:shadow-lg hover:shadow-primary/10 motion-safe:hover:-translate-y-2 motion-reduce:transition-none"
+            className="flex h-full gap-5 rounded-xl border border-border bg-card p-7 shadow-card transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:border-primary/70 hover:bg-secondary/60 hover:shadow-lg hover:shadow-primary/10 motion-safe:hover:-translate-y-2 motion-reduce:transition-none"
           >
             <IconBadge>
               <MessageCircle />
@@ -88,25 +131,10 @@ export function WhatsApp() {
               <p className="mt-2 leading-relaxed text-muted-foreground">{w.text}</p>
             </div>
           </div>
+          </div>
         ))}
       </div>
 
-      <SubTitle className="mt-16">O Que Postar no WhatsApp</SubTitle>
-      <ul className="mt-6 space-y-4">
-        {whatsappPosts.map(([name, desc]) => (
-          <li key={name} className="flex gap-3 text-base md:text-lg">
-            <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-primary" />
-            <span className="text-muted-foreground">
-              <Strong>{name}</Strong> — {desc}
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      <Lead className="mt-10 max-w-4xl">
-        O WhatsApp cria intimidade e confiança. Quando você envia uma mensagem, parece pessoal e
-        exclusivo, aumentando drasticamente as chances de conversão.
-      </Lead>
     </Section>
   );
 }
