@@ -9,7 +9,6 @@ import {
   Video,
 } from "lucide-react";
 
-import ebookCover from "@/assets/ebook-cover.jpg";
 import heroBg from "@/assets/hero-bg.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 
@@ -113,11 +112,11 @@ export function Hero() {
         <div className="relative mx-auto w-full max-w-sm">
           <div className="absolute inset-6 rounded-full bg-primary/40 blur-3xl" />
           <img
-            src={ebookCover}
-            alt="Capa do ebook com o título Tenha acesso aos Produtos que Realmente Vendem!"
-            width={1024}
-            height={1280}
-            className="relative animate-float-slow mask-fade-edges"
+            src="https://i.postimg.cc/d0PRDzB8/Lista-Secreta-do-Marketing-Digital.png"
+            alt="Lista Secreta: tenha acesso aos produtos que realmente vendem — acesso privado"
+            width={731}
+            height={800}
+            className="relative h-auto w-full animate-float-slow mask-fade-edges"
           />
         </div>
       </div>
