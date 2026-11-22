@@ -73,7 +73,7 @@ export function WhatsApp() {
     <Section>
       <SectionTitle>Whatsapp: Uma máquina de vendas!</SectionTitle>
 
-      <SubTitle className="mt-14">Onde e Como Divulgar no WhatsApp</SubTitle>
+      <SubTitle className="mt-14">Onde e Como Divulgar no WhatsApp:</SubTitle>
       <div className="mt-8 grid gap-5 md:grid-cols-2">
         {whatsappPlaces.map((w) => (
           <div
