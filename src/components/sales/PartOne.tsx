@@ -245,10 +245,34 @@ export function Divulgar() {
       </Lead>
 
       <div className="mt-10 grid gap-5 md:grid-cols-3">
+        <style>{`
+          @keyframes sales-step-glow {
+            0%, 45%, 100% { opacity: 0; }
+            15%, 25% { opacity: 1; }
+          }
+          .sales-step-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            border: 1px solid hsl(var(--primary) / 0.8);
+            box-shadow: 0 0 24px hsl(var(--primary) / 0.28),
+              inset 0 0 18px hsl(var(--primary) / 0.08);
+            opacity: 0;
+          }
+          @media (prefers-reduced-motion: no-preference) {
+            .sales-step-card::after {
+              animation: sales-step-glow 6s ease-in-out infinite;
+              animation-delay: inherit;
+            }
+          }
+        `}</style>
         {tiktokSteps.map((s, i) => (
           <div
             key={s.title}
-            className="rounded-xl border border-border bg-card p-7 shadow-card transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:border-primary/70 hover:bg-secondary/60 hover:shadow-lg hover:shadow-primary/10 motion-safe:hover:-translate-y-2 motion-reduce:transition-none"
+            style={{ animationDelay: `${i * 2}s` }}
+            className="sales-step-card relative rounded-xl border border-border bg-card p-7 shadow-card transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:border-primary/70 hover:bg-secondary/60 hover:shadow-lg hover:shadow-primary/10 motion-safe:hover:-translate-y-2 motion-reduce:transition-none"
           >
             <span className="font-display text-5xl font-extrabold text-primary">{i + 1}</span>
             <h4 className="mt-4 text-lg font-bold text-foreground">{s.title}</h4>
