@@ -91,8 +91,16 @@ export function Hero() {
           <h1 className="text-4xl font-extrabold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
             Do zero à <span className="text-gradient-primary">Primeira Venda</span>
           </h1>
-          <Lead className="mt-8 max-w-2xl text-foreground/85">
-            Você vai ganhar tanto dinheiro que vai querer abandonar a CLT
+          <h2 className="mt-8 max-w-2xl border-l-4 border-primary pl-5 text-2xl font-bold leading-tight text-foreground sm:text-3xl">
+            Você vai ganhar tanto dinheiro que vai querer{" "}
+            <span className="text-gradient-primary">abandonar a CLT!</span>
+          </h2>
+          <Lead className="mt-6 max-w-2xl text-foreground/85">
+            Antes de começar qualquer divulgação, você precisa ter em mãos um{" "}
+            <Strong>produto campeão</Strong> — aquele que praticamente se vende sozinho. A escolha
+            certa do produto é o alicerce de todo o seu sucesso como afiliado. Produtos ruins geram
+            frustração, cancelamentos e desmotivação. Já os produtos certos trazem vendas
+            recorrentes, avaliações positivas e clientes satisfeitos que indicam para outros.
           </Lead>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <CtaButton />
