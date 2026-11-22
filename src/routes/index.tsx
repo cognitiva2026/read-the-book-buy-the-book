@@ -36,7 +36,6 @@ function Index() {
     <main className="min-h-screen bg-background text-foreground">
       <Hero />
       <Produtos />
-      <MidCta />
       <Divulgar />
       <WhatsApp />
       <Instagram />
