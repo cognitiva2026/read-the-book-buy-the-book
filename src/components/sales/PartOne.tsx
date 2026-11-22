@@ -128,6 +128,7 @@ export function Hero() {
 
 export function Produtos() {
   const cardsRef = useRef<HTMLDivElement>(null);
+  const categoriesRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     const grid = cardsRef.current;
@@ -148,7 +149,7 @@ export function Produtos() {
               ],
               {
                 duration: 650,
-                delay: (Number(card.dataset.index) % 3) * 100,
+                delay: (Number(card.dataset.index) % Number(card.dataset.columns || 3)) * 100,
                 easing: "cubic-bezier(0.22, 1, 0.36, 1)",
                 fill: "backwards",
               },
@@ -160,6 +161,9 @@ export function Produtos() {
       { threshold: 0.15 },
     );
     Array.from(grid.children).forEach((card) => observer.observe(card));
+    if (categoriesRef.current) {
+      Array.from(categoriesRef.current.children).forEach((card) => observer.observe(card));
+    }
     const stopAnimations = () => {
       if (reducedMotion.matches) animations.forEach((animation) => animation.cancel());
     };
@@ -190,21 +194,23 @@ export function Produtos() {
       </div>
 
       <SubTitle className="mt-20">Categorias Campeãs que Vendem Muito</SubTitle>
-      <ul className="mt-8 grid auto-rows-fr gap-5 sm:grid-cols-2">
-        {categories.map(([name, desc]) => (
+      <ul ref={categoriesRef} className="mt-6 grid auto-rows-fr gap-3 sm:grid-cols-2">
+        {categories.map(([name, desc], i) => (
           <li
             key={name}
-            className="group relative flex h-full items-start gap-4 rounded-xl border border-border bg-secondary/60 p-6 shadow-card transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:border-primary/70 hover:bg-secondary hover:shadow-lg hover:shadow-primary/10 motion-safe:hover:-translate-y-1 motion-reduce:transition-none md:p-7"
+            data-index={i}
+            data-columns="2"
+            className="group relative flex h-full items-start gap-3 rounded-xl border border-border bg-secondary/60 p-4 shadow-card transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:border-primary/70 hover:bg-secondary hover:shadow-lg hover:shadow-primary/10 motion-safe:hover:-translate-y-1 motion-reduce:transition-none md:p-4"
           >
             <span
               aria-hidden="true"
-              className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-primary transition-transform duration-300 motion-safe:group-hover:scale-125 motion-reduce:transition-none"
+              className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary transition-transform duration-300 motion-safe:group-hover:scale-125 motion-reduce:transition-none"
             />
             <div>
-              <h3 className="text-lg font-bold leading-snug text-foreground md:text-xl">
+              <h3 className="text-base font-bold leading-snug text-foreground">
                 {name}
               </h3>
-              <p className="mt-2 leading-relaxed text-muted-foreground">{desc}</p>
+              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{desc}</p>
             </div>
           </li>
         ))}
