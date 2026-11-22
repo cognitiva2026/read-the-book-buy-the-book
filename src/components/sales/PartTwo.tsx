@@ -72,12 +72,6 @@ export function WhatsApp() {
   return (
     <Section>
       <SectionTitle>Whatsapp: Uma máquina de vendas!</SectionTitle>
-      <Lead className="mt-6 max-w-4xl">
-        O WhatsApp é uma ferramenta subestimada, mas extremamente poderosa para afiliados. É
-        gratuito, todo mundo usa diariamente, e permite divulgação direta sem algoritmos
-        atrapalhando. Você atinge as pessoas exatamente onde elas já estão — e elas verificam o
-        WhatsApp dezenas de vezes por dia.
-      </Lead>
 
       <SubTitle className="mt-14">Onde e Como Divulgar no WhatsApp</SubTitle>
       <div className="mt-8 grid gap-5 md:grid-cols-2">
