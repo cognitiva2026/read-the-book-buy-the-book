@@ -99,7 +99,10 @@ export function WhatsApp() {
       <SubTitle className="mt-20">Onde e Como Divulgar no WhatsApp</SubTitle>
       <div className="mt-8 grid gap-5 md:grid-cols-2">
         {whatsappPlaces.map((w) => (
-          <div key={w.title} className="flex gap-5 rounded-xl border border-border bg-card p-7 shadow-card">
+          <div
+            key={w.title}
+            className="flex gap-5 rounded-xl border border-border bg-card p-7 shadow-card transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:border-primary/70 hover:bg-secondary/60 hover:shadow-lg hover:shadow-primary/10 motion-safe:hover:-translate-y-2 motion-reduce:transition-none"
+          >
             <IconBadge>
               <MessageCircle />
             </IconBadge>
