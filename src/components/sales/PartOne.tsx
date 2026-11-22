@@ -108,13 +108,13 @@ export function Hero() {
             }
             @media (prefers-reduced-motion: no-preference) {
               .hero-title-word {
-                animation: hero-word-open 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+                animation: hero-word-open 2400ms cubic-bezier(0.22, 1, 0.36, 1) both;
               }
               .hero-subtitle-enter {
-                animation: hero-copy-enter 800ms ease-out 550ms both;
+                animation: hero-copy-enter 1800ms ease-out 1800ms both;
               }
               .hero-description-enter {
-                animation: hero-copy-enter 800ms ease-out 750ms both;
+                animation: hero-copy-enter 1600ms ease-out 2600ms both;
               }
             }
           `}</style>
@@ -128,7 +128,7 @@ export function Hero() {
                   {i > 0 ? " " : null}
                   <span
                     className={`hero-title-word inline-block ${i > 2 ? "text-gradient-primary" : ""}`}
-                    style={{ animationDelay: `${i * 110}ms` }}
+                    style={{ animationDelay: `${i * 400}ms` }}
                   >
                     {word}
                   </span>
