@@ -190,13 +190,22 @@ export function Produtos() {
       </div>
 
       <SubTitle className="mt-20">Categorias Campeãs que Vendem Muito</SubTitle>
-      <ul className="mt-8 grid gap-x-10 gap-y-4 sm:grid-cols-2">
+      <ul className="mt-8 grid auto-rows-fr gap-5 sm:grid-cols-2">
         {categories.map(([name, desc]) => (
-          <li key={name} className="flex gap-3 text-base md:text-lg">
-            <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-primary" />
-            <span className="text-muted-foreground">
-              <Strong>{name}</Strong> — {desc}
-            </span>
+          <li
+            key={name}
+            className="group relative flex h-full items-start gap-4 rounded-xl border border-border bg-secondary/60 p-6 shadow-card transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:border-primary/70 hover:bg-secondary hover:shadow-lg hover:shadow-primary/10 motion-safe:hover:-translate-y-1 motion-reduce:transition-none md:p-7"
+          >
+            <span
+              aria-hidden="true"
+              className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-primary transition-transform duration-300 motion-safe:group-hover:scale-125 motion-reduce:transition-none"
+            />
+            <div>
+              <h3 className="text-lg font-bold leading-snug text-foreground md:text-xl">
+                {name}
+              </h3>
+              <p className="mt-2 leading-relaxed text-muted-foreground">{desc}</p>
+            </div>
           </li>
         ))}
       </ul>
