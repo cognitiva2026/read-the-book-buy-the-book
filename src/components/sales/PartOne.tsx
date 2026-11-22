@@ -89,14 +89,58 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/10" />
       <div className="relative mx-auto flex min-h-[640px] max-w-6xl items-center px-5 py-16 md:min-h-[720px] md:px-8 md:py-24 lg:min-h-[800px]">
         <div>
-          <h1 className="text-4xl font-extrabold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
-            Do zero à <span className="text-gradient-primary">Primeira Venda</span>
+          <style>{`
+            @keyframes hero-word-open {
+              from {
+                opacity: 0;
+                transform: translateY(0.7em) rotate(3deg);
+                clip-path: inset(0 0 100% 0);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0) rotate(0);
+                clip-path: inset(-10% -5% -15% -5%);
+              }
+            }
+            @keyframes hero-copy-enter {
+              from { opacity: 0; transform: translateY(20px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+            @media (prefers-reduced-motion: no-preference) {
+              .hero-title-word {
+                animation: hero-word-open 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+              }
+              .hero-subtitle-enter {
+                animation: hero-copy-enter 800ms ease-out 550ms both;
+              }
+              .hero-description-enter {
+                animation: hero-copy-enter 800ms ease-out 750ms both;
+              }
+            }
+          `}</style>
+          <h1
+            aria-label="Do zero à Primeira Venda"
+            className="text-4xl font-extrabold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl"
+          >
+            <span aria-hidden="true">
+              {["Do", "zero", "à", "Primeira", "Venda"].map((word, i) => (
+                <span key={word}>
+                  {i > 0 ? " " : null}
+                  <span
+                    className={`hero-title-word inline-block ${i > 2 ? "text-gradient-primary" : ""}`}
+                    style={{ animationDelay: `${i * 110}ms` }}
+                  >
+                    {word}
+                  </span>
+                </span>
+              ))}
+            </span>
           </h1>
-          <h2 className="mt-8 max-w-2xl border-l-4 border-primary pl-5 text-2xl font-bold leading-tight text-foreground sm:text-3xl">
+          <h2 className="hero-subtitle-enter mt-8 max-w-2xl border-l-4 border-primary pl-5 text-2xl font-bold leading-tight text-foreground sm:text-3xl">
             Você vai ganhar tanto dinheiro que vai querer{" "}
             <span className="text-gradient-primary">abandonar a CLT!</span>
           </h2>
-          <Lead className="mt-6 max-w-2xl text-foreground/85">
+          <Lead className="hero-description-enter mt-6 max-w-2xl text-foreground/85">
             Antes de começar qualquer divulgação, você precisa ter em mãos um{" "}
             <Strong>produto campeão</Strong> — aquele que praticamente se vende sozinho. A escolha
             certa do produto é o alicerce de todo o seu sucesso como afiliado. Produtos ruins geram
