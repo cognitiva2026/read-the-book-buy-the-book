@@ -14,7 +14,6 @@ import heroBg from "@/assets/hero-bg.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 
 import {
-  Callout,
   CtaButton,
   IconBadge,
   Lead,
@@ -281,19 +280,6 @@ export function Divulgar() {
         ))}
       </div>
 
-      <div className="mt-10">
-        <Callout>
-          <Strong>Nunca fale "compre aqui"</Strong> — isso soa forçado e derruba o engajamento. Use
-          frases naturais como: "Link tá no comentário fixado", "Achei na Shopee", ou "Quem quiser
-          eu deixei o link". Essa abordagem sutil funciona muito melhor.
-        </Callout>
-      </div>
-
-      <Lead className="mt-10 max-w-4xl">
-        O segredo está em criar vídeos que pareçam recomendações genuínas de amigos, não anúncios
-        comerciais. Quando as pessoas sentem que você está compartilhando uma descoberta útil, elas
-        confiam e clicam.
-      </Lead>
     </Section>
   );
 }
