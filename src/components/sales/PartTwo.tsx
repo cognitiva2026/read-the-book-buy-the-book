@@ -158,11 +158,6 @@ export function Instagram() {
       </div>
 
       <SubTitle className="mt-16">Reels para Alcance Massivo</SubTitle>
-      <Lead className="mt-5 max-w-4xl">
-        Seus Reels no Instagram devem seguir exatamente a mesma estratégia dos vídeos no TikTok. O
-        algoritmo do Instagram favorece Reels que seguram a atenção do início ao fim, então foque em
-        ganchos fortes, ritmo rápido e chamada para ação natural no final.
-      </Lead>
       <div className="mt-10">
         <Quote>
           "Reels bem feitos no Instagram podem alcançar milhões de visualizações mesmo sem
