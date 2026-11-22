@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 import {
   Clapperboard,
   Filter,
@@ -125,14 +127,59 @@ export function Hero() {
 }
 
 export function Produtos() {
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = cardsRef.current;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!grid || reducedMotion.matches || !("IntersectionObserver" in window)) return;
+
+    const animations: Animation[] = [];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const card = entry.target as HTMLElement;
+          if (!reducedMotion.matches && typeof card.animate === "function") {
+            animations.push(card.animate(
+              [
+                { opacity: 0, transform: "translateY(32px)" },
+                { opacity: 1, transform: "translateY(0)" },
+              ],
+              {
+                duration: 650,
+                delay: (Number(card.dataset.index) % 3) * 100,
+                easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+                fill: "backwards",
+              },
+            ));
+          }
+          observer.unobserve(card);
+        });
+      },
+      { threshold: 0.15 },
+    );
+    Array.from(grid.children).forEach((card) => observer.observe(card));
+    const stopAnimations = () => {
+      if (reducedMotion.matches) animations.forEach((animation) => animation.cancel());
+    };
+    reducedMotion.addEventListener("change", stopAnimations);
+    return () => {
+      observer.disconnect();
+      animations.forEach((animation) => animation.cancel());
+      reducedMotion.removeEventListener("change", stopAnimations);
+    };
+  }, []);
+
   return (
     <Section id="conteudo" className="pt-4 md:pt-8">
-      <div className="grid gap-5 md:grid-cols-6">
+      <div ref={cardsRef} className="grid auto-rows-fr gap-5 md:grid-cols-6 md:gap-6">
         {criteria.map((c, i) => (
           <div
             key={c.title}
-            className={`rounded-xl border border-border bg-secondary/60 p-7 shadow-card transition-transform hover:-translate-y-1 ${
-              i < 3 ? "md:col-span-2" : "md:col-span-3"
+            data-index={i}
+            className={`h-full rounded-xl border border-border bg-secondary/60 p-7 shadow-card transition-transform duration-300 motion-safe:hover:-translate-y-1 motion-reduce:transition-none md:col-span-2 ${
+              i === 3 ? "md:col-start-2" : i === 4 ? "md:col-start-4" : ""
             }`}
           >
             <IconBadge>{c.icon}</IconBadge>
