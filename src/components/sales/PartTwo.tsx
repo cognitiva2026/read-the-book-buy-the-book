@@ -116,17 +116,8 @@ export function Instagram() {
     <Section className="bg-ember">
       <SectionTitle>Instagram: Todo mundo usa!</SectionTitle>
       <Lead className="mt-6 max-w-4xl">
-        O Instagram continua sendo uma plataforma essencial para afiliados, especialmente porque
-        permite combinar diferentes formatos: Stories para conexão diária e Reels para alcance
-        viral. A chave é usar cada formato estrategicamente, focando em gatilhos mentais que
-        disparam decisões de compra rápidas.
-      </Lead>
-
-      <SubTitle className="mt-16">Stories que Vendem</SubTitle>
-      <Lead className="mt-5 max-w-4xl">
-        Stories são perfeitos para criar urgência e intimidade com sua audiência. Eles desaparecem
-        em 24 horas, o que naturalmente cria senso de escassez — as pessoas sabem que se não agirem
-        agora, vão perder a oportunidade.
+        No instagram é fácil viralizar esses produtos. Use gatilhos mentais, crie senso de urgência
+        e transforme reels e stories em ferramentas para fazer dinheiro!
       </Lead>
       <div className="mt-10 grid gap-5 md:grid-cols-3">
         {stories.map((s) => (
