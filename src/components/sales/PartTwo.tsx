@@ -71,7 +71,7 @@ const videoSteps = [
 export function WhatsApp() {
   return (
     <Section>
-      <SectionTitle>WhatsApp: Sua Máquina Silenciosa de Vendas</SectionTitle>
+      <SectionTitle>Whatsapp: Uma máquina de vendas!</SectionTitle>
       <Lead className="mt-6 max-w-4xl">
         O WhatsApp é uma ferramenta subestimada, mas extremamente poderosa para afiliados. É
         gratuito, todo mundo usa diariamente, e permite divulgação direta sem algoritmos
