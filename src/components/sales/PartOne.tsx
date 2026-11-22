@@ -9,7 +9,6 @@ import {
   Video,
 } from "lucide-react";
 
-import heroBg from "@/assets/hero-bg.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -78,15 +77,17 @@ const tiktokSteps = [
 
 export function Hero() {
   return (
-    <header className="relative overflow-hidden">
+    <header className="relative isolate w-full overflow-hidden">
       <img
-        src={heroBg.url}
+        src="https://i.postimg.cc/K8FttCwF/Lista-Secreta-do-Marketing-Digital.png"
         alt=""
         aria-hidden
-        className="absolute inset-0 h-full w-full object-cover opacity-45"
+        fetchPriority="high"
+        className="absolute inset-0 h-full w-full object-cover object-[65%_center] lg:object-center"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 pb-16 pt-16 md:px-8 md:pb-20 md:pt-24 lg:grid-cols-[1.2fr_0.8fr]">
+      <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/75 to-background/15" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/10" />
+      <div className="relative mx-auto flex min-h-[640px] max-w-6xl items-center px-5 py-16 md:min-h-[720px] md:px-8 md:py-24 lg:min-h-[800px]">
         <div>
           <h1 className="text-4xl font-extrabold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
             Do zero à <span className="text-gradient-primary">Primeira Venda</span>
@@ -108,16 +109,6 @@ export function Hero() {
               <a href="#conteudo">Saber Mais</a>
             </Button>
           </div>
-        </div>
-        <div className="relative mx-auto w-full max-w-sm">
-          <div className="absolute inset-6 rounded-full bg-primary/40 blur-3xl" />
-          <img
-            src="https://i.postimg.cc/K8FttCwF/Lista-Secreta-do-Marketing-Digital.png"
-            alt="Lista Secreta: tenha acesso aos produtos que realmente vendem — acesso privado"
-            width={1279}
-            height={720}
-            className="relative h-auto w-full animate-float-slow mask-fade-edges"
-          />
         </div>
       </div>
     </header>
