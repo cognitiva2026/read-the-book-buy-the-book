@@ -230,7 +230,7 @@ export function Produtos() {
 export function Divulgar() {
   return (
     <Section className="bg-ember">
-      <SectionTitle>Onde Divulgar de Forma Orgânica (GRÁTIS)</SectionTitle>
+      <SectionTitle>Onde você irá divulgar de forma TOTALMENTE GRÁTIS:</SectionTitle>
       <Lead className="mt-6 max-w-4xl">
         A boa notícia é que você <Strong>NÃO precisa aparecer</Strong> se não quiser. Existem
         estratégias inteligentes que permitem vender sem expor seu rosto, sua voz ou sua
