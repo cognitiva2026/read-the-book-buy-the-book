@@ -222,7 +222,7 @@ export function Produtos() {
         ))}
       </div>
 
-      <SubTitle className="mt-20">Categorias Campeãs que Vendem Muito</SubTitle>
+      <SubTitle className="mt-20">Categorias Campeãs que Vendem Muito:</SubTitle>
       <ul ref={categoriesRef} className="mt-6 grid auto-rows-fr gap-3 sm:grid-cols-2">
         {categories.map(([name, desc], i) => (
           <li
