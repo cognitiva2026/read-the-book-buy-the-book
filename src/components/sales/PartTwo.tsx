@@ -114,7 +114,7 @@ export function WhatsApp() {
 
   return (
     <Section>
-      <SectionTitle className="whitespace-nowrap text-[clamp(0.7rem,3.65vw,2.5rem)] md:text-[clamp(0.7rem,3.65vw,2.5rem)]">Whatsapp: Sua máquina silenciosa de vendas</SectionTitle>
+      <SectionTitle className="md:whitespace-nowrap">Whatsapp: Sua máquina silenciosa de vendas</SectionTitle>
 
       <SubTitle className="mt-14">Onde e Como Divulgar no WhatsApp:</SubTitle>
       <div ref={placesRef} className="mt-8 grid gap-5 md:grid-cols-2">
