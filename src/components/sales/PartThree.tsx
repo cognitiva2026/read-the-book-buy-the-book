@@ -1,6 +1,5 @@
 import { Check, Search, Target, TrendingUp, X } from "lucide-react";
 
-import celebrating from "@/assets/celebrating.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -311,7 +310,7 @@ export function Oferta() {
         <div className="relative">
           <div className="absolute -inset-4 rounded-3xl bg-primary/25 blur-3xl" />
           <img
-            src={celebrating.url}
+            src="https://i.postimg.cc/FFw5tmc1/celebrating.jpg"
             alt="Homem comemorando com os braços erguidos"
             loading="lazy"
             width={1024}
