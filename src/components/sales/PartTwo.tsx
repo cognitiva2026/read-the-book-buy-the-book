@@ -1,5 +1,3 @@
-import { useEffect, useRef } from "react";
-
 import { BadgePercent, Hand, MessageCircle, PackageX, Users } from "lucide-react";
 
 import { Callout, IconBadge, Lead, Quote, Section, SectionTitle, Strong, SubTitle } from "./shared";
@@ -65,59 +63,14 @@ const videoSteps = [
 ];
 
 export function WhatsApp() {
-  const placesRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const grid = placesRef.current;
-    if (!grid || !("IntersectionObserver" in window)) return;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const animations = new Map<HTMLElement, Animation>();
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const item = entry.target as HTMLElement;
-          if (reducedMotion.matches || typeof item.animate !== "function") return;
-          const visible = entry.isIntersecting && entry.intersectionRatio >= 0.1;
-          const previous = animations.get(item);
-          const opacity = getComputedStyle(item).opacity;
-          const transform = getComputedStyle(item).transform;
-          previous?.cancel();
-          animations.set(item, item.animate(
-            [
-              { opacity, transform },
-              { opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(24px)" },
-            ],
-            {
-              duration: visible ? 850 : 450,
-              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
-              fill: "both",
-            },
-          ));
-        });
-      },
-      { threshold: [0, 0.1] },
-    );
-    Array.from(grid.children).forEach((item) => observer.observe(item));
-    const stopAnimations = () => {
-      if (reducedMotion.matches) {
-        animations.forEach((animation) => animation.cancel());
-        animations.clear();
-      }
-    };
-    reducedMotion.addEventListener("change", stopAnimations);
-    return () => {
-      observer.disconnect();
-      animations.forEach((animation) => animation.cancel());
-      reducedMotion.removeEventListener("change", stopAnimations);
-    };
-  }, []);
 
   return (
     <Section>
       <SectionTitle className="whitespace-nowrap text-[clamp(0.7rem,3.65vw,2.5rem)] md:text-[clamp(0.7rem,3.65vw,2.5rem)]">Whatsapp: Sua máquina silenciosa de vendas</SectionTitle>
 
       <SubTitle className="mt-14">Onde e Como Divulgar no WhatsApp:</SubTitle>
-      <div ref={placesRef} className="mt-8 grid gap-5 md:grid-cols-2">
+      <div className="mt-8 grid gap-5 md:grid-cols-2">
         {whatsappPlaces.map((w) => (
           <div key={w.title}>
           <div
