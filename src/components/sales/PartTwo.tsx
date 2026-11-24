@@ -142,7 +142,7 @@ export function WhatsApp() {
 export function Instagram() {
   return (
     <Section className="bg-ember">
-      <SectionTitle>Instagram: Todo mundo usa!</SectionTitle>
+      <SectionTitle>Instagram: Transforme Stories e Reels em Vendas</SectionTitle>
       <Lead className="mt-6 max-w-4xl">
         No instagram é fácil viralizar esses produtos. Use gatilhos mentais, crie senso de urgência
         e transforme reels e stories em ferramentas para fazer dinheiro!
