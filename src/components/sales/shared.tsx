@@ -36,7 +36,7 @@ export function SectionTitle({ children, className }: { children: ReactNode; cla
   return (
     <h2
       className={cn(
-        "text-xl font-extrabold leading-[1.1] text-foreground md:text-3xl",
+        "text-3xl font-extrabold leading-[1.1] text-foreground md:text-5xl",
         className,
       )}
     >
