@@ -141,11 +141,7 @@ export function Hero() {
             <span className="text-gradient-primary">abandonar a CLT!</span>
           </h2>
           <Lead className="hero-description-enter mt-6 max-w-2xl text-foreground/85">
-            Antes de começar qualquer divulgação, você precisa ter em mãos um{" "}
-            <Strong>produto campeão</Strong> — aquele que praticamente se vende sozinho. A escolha
-            certa do produto é o alicerce de todo o seu sucesso como afiliado. Produtos ruins geram
-            frustração, cancelamentos e desmotivação. Já os produtos certos trazem vendas
-            recorrentes, avaliações positivas e clientes satisfeitos que indicam para outros.
+            Você está à um passo de ter acesso aos <Strong>produtos mais lucrativos do digital</Strong>. Aqueles que praticamente se vendem sozinhos. Eu vou pegar sua mão, te mostrar o ouro e te ensinar a como trabalhar de forma inteligente realizando vendas através da internet.
           </Lead>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <CtaButton />
