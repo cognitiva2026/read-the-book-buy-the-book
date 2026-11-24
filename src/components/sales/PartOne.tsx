@@ -259,7 +259,7 @@ export function Produtos() {
 export function Divulgar() {
   return (
     <Section className="bg-ember">
-      <SectionTitle>Você irá aprender a divulgar esses produtos SEM GASTAR DINHEIRO!</SectionTitle>
+      <SectionTitle>Divulgue esses produtos SEM GASTAR DINHEIRO!</SectionTitle>
 
       <div className="mt-14 flex items-center gap-4">
         <IconBadge>
