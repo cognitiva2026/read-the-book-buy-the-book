@@ -203,6 +203,7 @@ export function Produtos() {
 
   return (
     <Section id="conteudo" className="pt-4 md:pt-8">
+      <SectionTitle className="mb-6">Você terá acesso aos produtos que possuem:</SectionTitle>
       <div ref={cardsRef} className="grid auto-rows-fr gap-3 md:grid-cols-6">
         {criteria.map((c, i) => (
           <div
