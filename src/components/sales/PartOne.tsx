@@ -1,5 +1,3 @@
-import { useEffect, useRef } from "react";
-
 import {
   Clapperboard,
   Filter,
@@ -128,58 +126,12 @@ export function Hero() {
 }
 
 export function Produtos() {
-  const cardsRef = useRef<HTMLDivElement>(null);
-  const categoriesRef = useRef<HTMLUListElement>(null);
 
-  useEffect(() => {
-    const grid = cardsRef.current;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!grid || reducedMotion.matches || !("IntersectionObserver" in window)) return;
-
-    const animations: Animation[] = [];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const card = entry.target as HTMLElement;
-          if (!reducedMotion.matches && typeof card.animate === "function") {
-            animations.push(card.animate(
-              [
-                { opacity: 0, transform: "translateY(32px)" },
-                { opacity: 1, transform: "translateY(0)" },
-              ],
-              {
-                duration: 650,
-                delay: (Number(card.dataset.index) % Number(card.dataset.columns || 3)) * 100,
-                easing: "cubic-bezier(0.22, 1, 0.36, 1)",
-                fill: "backwards",
-              },
-            ));
-          }
-          observer.unobserve(card);
-        });
-      },
-      { threshold: 0.15 },
-    );
-    Array.from(grid.children).forEach((card) => observer.observe(card));
-    if (categoriesRef.current) {
-      Array.from(categoriesRef.current.children).forEach((card) => observer.observe(card));
-    }
-    const stopAnimations = () => {
-      if (reducedMotion.matches) animations.forEach((animation) => animation.cancel());
-    };
-    reducedMotion.addEventListener("change", stopAnimations);
-    return () => {
-      observer.disconnect();
-      animations.forEach((animation) => animation.cancel());
-      reducedMotion.removeEventListener("change", stopAnimations);
-    };
-  }, []);
 
   return (
     <Section id="conteudo" className="pt-4 md:pt-8">
       <SectionTitle className="mb-6">Você terá acesso aos produtos que possuem:</SectionTitle>
-      <div ref={cardsRef} className="grid auto-rows-fr gap-3 md:grid-cols-6">
+      <div className="grid auto-rows-fr gap-3 md:grid-cols-6">
         {criteria.map((c, i) => (
           <div
             key={c.title}
@@ -198,7 +150,7 @@ export function Produtos() {
       </div>
 
       <SubTitle className="mt-20 text-2xl md:text-4xl">Categorias Campeãs que Vendem Muito:</SubTitle>
-      <ul ref={categoriesRef} className="mt-6 grid auto-rows-fr gap-3 sm:grid-cols-2">
+      <ul className="mt-6 grid auto-rows-fr gap-3 sm:grid-cols-2">
         {categories.map(([name, desc], i) => (
           <li
             key={name}
@@ -249,34 +201,10 @@ export function Divulgar() {
       </Lead>
 
       <div className="mt-10 grid gap-5 md:grid-cols-3">
-        <style>{`
-          @keyframes sales-step-glow {
-            0%, 45%, 100% { opacity: 0; }
-            15%, 25% { opacity: 1; }
-          }
-          .sales-step-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            pointer-events: none;
-            border: 1px solid hsl(var(--primary) / 0.8);
-            box-shadow: 0 0 24px hsl(var(--primary) / 0.28),
-              inset 0 0 18px hsl(var(--primary) / 0.08);
-            opacity: 0;
-          }
-          @media (prefers-reduced-motion: no-preference) {
-            .sales-step-card::after {
-              animation: sales-step-glow 6s ease-in-out infinite;
-              animation-delay: inherit;
-            }
-          }
-        `}</style>
         {tiktokSteps.map((s, i) => (
           <div
             key={s.title}
-            style={{ animationDelay: `${i * 2}s` }}
-            className="sales-step-card relative rounded-xl border border-border bg-card p-7 shadow-card transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:border-primary/70 hover:bg-secondary/60 hover:shadow-lg hover:shadow-primary/10 motion-safe:hover:-translate-y-2 motion-reduce:transition-none"
+            className="relative rounded-xl border border-border bg-card p-7 shadow-card transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:border-primary/70 hover:bg-secondary/60 hover:shadow-lg hover:shadow-primary/10 motion-safe:hover:-translate-y-2 motion-reduce:transition-none"
           >
             <span className="font-display text-5xl font-extrabold text-primary">{i + 1}</span>
             <h4 className="mt-4 text-lg font-bold text-foreground">{s.title}</h4>
