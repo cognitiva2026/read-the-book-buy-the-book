@@ -391,9 +391,6 @@ export function Oferta() {
         </Lead>
         <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
           <CtaButton />
-          <Button asChild variant="ctaOutline" size="xl">
-            <a href="#conteudo">Saber Mais</a>
-          </Button>
         </div>
         <Lead className="mx-auto mt-10 max-w-3xl text-foreground">
           Você tem todo o conhecimento. Você tem a estratégia. Agora falta apenas a decisão de
