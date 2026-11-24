@@ -145,9 +145,6 @@ export function Hero() {
           </Lead>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <CtaButton />
-            <Button asChild variant="ctaOutline" size="xl">
-              <a href="#conteudo">Saber Mais</a>
-            </Button>
           </div>
         </div>
       </div>
