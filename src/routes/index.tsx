@@ -53,7 +53,7 @@ function Index() {
     );
     const play = (target: Element, frames: Keyframe[], duration: number, delay = 0) => {
       const animation = target.animate(frames, {
-        duration, delay, fill: "backwards", easing: "cubic-bezier(0.25, 0.8, 0.25, 1)",
+        duration, delay, fill: "backwards", easing: "cubic-bezier(0.22, 1, 0.36, 1)",
       });
       animations.add(animation);
       animation.onfinish = () => animations.delete(animation);
@@ -66,25 +66,25 @@ function Index() {
         if (motion.matches) continue;
         const { scene, item } = order.get(entry.target) ?? { scene: 0, item: 0 };
         const heading = entry.target.matches("h2, h3");
-        const distance = compact.matches ? 12 : 28;
+        const distance = compact.matches ? 22 : 54;
         const mode = scene % 4;
-        const delay = Math.min(item % 3 * 45, 90);
+        const delay = Math.min(item % 3 * 65, 130);
         if (heading) {
           play(entry.target, [
-            { opacity: 0.45, clipPath: "inset(0 0 35% 0)", translate: "0 12px" },
+            { opacity: 0.2, clipPath: "inset(0 0 100% 0)", translate: "0 20px" },
             { opacity: 1, clipPath: "inset(-8% -3% -12% -3%)", translate: "0 0" },
-          ], 1250, delay);
+          ], 920, delay);
         } else {
           const start: Keyframe = mode === 0
-            ? { opacity: 0.5, translate: "0 18px", scale: "0.99" }
+            ? { opacity: 0.2, translate: "0 36px", scale: "0.97" }
             : mode === 1
-              ? { opacity: 0.5, translate: `${item % 2 ? distance : -distance}px 6px` }
+              ? { opacity: 0.2, translate: `${item % 2 ? distance : -distance}px 12px` }
               : mode === 2
-                ? { opacity: 0.5, scale: "0.98", translate: "0 8px" }
-                : { opacity: 0.5, translate: "0 14px", clipPath: "inset(0 0 5% 0)" };
+                ? { opacity: 0.25, scale: "0.94", translate: "0 12px" }
+                : { opacity: 0.2, translate: "0 28px", clipPath: "inset(0 0 12% 0)" };
           play(entry.target, [start, {
             opacity: 1, translate: "0 0", scale: "1", clipPath: "inset(-12% -12% -12% -12%)",
-          }], 1350, delay);
+          }], 1000, delay);
         }
       }
     }, { threshold: 0, rootMargin: "0px 0px -24px 0px" });
@@ -108,9 +108,9 @@ function Index() {
         accents.push(accent);
         play(accent, [
           { opacity: 0, scale: "0.08 1" },
-          { opacity: 0.45, scale: "0.8 1", offset: 0.45 },
+          { opacity: 0.9, scale: "0.8 1", offset: 0.45 },
           { opacity: 0, scale: "1 1" },
-        ], 1700);
+        ], 1250);
         accent.style.opacity = "0";
       }
     }, { threshold: 0, rootMargin: "0px 0px -60px 0px" });
