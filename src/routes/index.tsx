@@ -39,94 +39,41 @@ function Index() {
     const page = pageRef.current;
     if (!page || typeof IntersectionObserver === "undefined" || typeof Element.prototype.animate !== "function") return;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const compact = window.matchMedia("(max-width: 767px)");
     const animations = new Set<Animation>();
-    const sections = Array.from(page.querySelectorAll<HTMLElement>(":scope > section"));
-    const order = new Map<Element, { scene: number; item: number }>();
-    sections.forEach((section, scene) => {
-      const content = section.firstElementChild;
-      if (!content) return;
-      Array.from(content.children).forEach((target, item) => order.set(target, { scene, item }));
+    const targets = new Map<Element, number>();
+    page.querySelectorAll(":scope > section > div > *").forEach((element) => {
+      if (element.matches("style")) return;
+      if (element.matches(".grid")) {
+        Array.from(element.children).filter(child => !child.matches("style, .absolute")).forEach((child, index) => targets.set(child, (index % 3) * 180));
+      } else {
+        targets.set(element, 0);
+      }
     });
-    page.querySelectorAll(":scope > div, :scope > footer").forEach((target) =>
-      order.set(target, { scene: 9, item: 0 })
-    );
-    const play = (target: Element, frames: Keyframe[], duration: number, delay = 0) => {
-      const animation = target.animate(frames, {
-        duration, delay, fill: "backwards", easing: "cubic-bezier(0.22, 1, 0.36, 1)",
-      });
-      animations.add(animation);
-      animation.onfinish = () => animations.delete(animation);
-      animation.oncancel = () => animations.delete(animation);
-    };
-    const observer = new IntersectionObserver((entries) => {
+    page.querySelectorAll(":scope > div, :scope > footer").forEach(element => targets.set(element, 0));
+    const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
         observer.unobserve(entry.target);
         if (motion.matches) continue;
-        const { scene, item } = order.get(entry.target) ?? { scene: 0, item: 0 };
-        const heading = entry.target.matches("h2, h3");
-        const distance = compact.matches ? 22 : 54;
-        const mode = scene % 4;
-        const delay = Math.min(item % 3 * 65, 130);
-        if (heading) {
-          play(entry.target, [
-            { opacity: 0.2, clipPath: "inset(0 0 100% 0)", translate: "0 20px" },
-            { opacity: 1, clipPath: "inset(-8% -3% -12% -3%)", translate: "0 0" },
-          ], 920, delay);
-        } else {
-          const start: Keyframe = mode === 0
-            ? { opacity: 0.2, translate: "0 36px", scale: "0.97" }
-            : mode === 1
-              ? { opacity: 0.2, translate: `${item % 2 ? distance : -distance}px 12px` }
-              : mode === 2
-                ? { opacity: 0.25, scale: "0.94", translate: "0 12px" }
-                : { opacity: 0.2, translate: "0 28px", clipPath: "inset(0 0 12% 0)" };
-          play(entry.target, [start, {
-            opacity: 1, translate: "0 0", scale: "1", clipPath: "inset(-12% -12% -12% -12%)",
-          }], 1000, delay);
-        }
+        const animation = entry.target.animate(
+          [{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "translateY(0)" }],
+          { duration: 1100, easing: "ease-out", delay: targets.get(entry.target) ?? 0, fill: "backwards" }
+        );
+        animations.add(animation);
+        animation.onfinish = () => animations.delete(animation);
       }
     }, { threshold: 0, rootMargin: "0px 0px -24px 0px" });
-    order.forEach((_, target) => observer.observe(target));
-
-    // A short light sweep marks each scene boundary without moving the layout.
-    const accents: HTMLElement[] = [];
-    const sceneObserver = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        sceneObserver.unobserve(entry.target);
-        if (motion.matches) continue;
-        const accent = document.createElement("span");
-        accent.setAttribute("aria-hidden", "true");
-        Object.assign(accent.style, {
-          position: "absolute", top: "0", left: "0", width: "100%", height: "2px",
-          pointerEvents: "none", zIndex: "1", transformOrigin: "center",
-          background: "linear-gradient(90deg, transparent, var(--primary-glow), transparent)",
-        });
-        entry.target.appendChild(accent);
-        accents.push(accent);
-        play(accent, [
-          { opacity: 0, scale: "0.08 1" },
-          { opacity: 0.9, scale: "0.8 1", offset: 0.45 },
-          { opacity: 0, scale: "1 1" },
-        ], 1250);
-        accent.style.opacity = "0";
-      }
-    }, { threshold: 0, rootMargin: "0px 0px -60px 0px" });
-    sections.forEach((section) => sceneObserver.observe(section));
+    targets.forEach((_, target) => observer.observe(target));
     const stopMotion = () => {
       if (motion.matches) {
-        animations.forEach((animation) => animation.cancel());
+        animations.forEach(animation => animation.cancel());
         animations.clear();
       }
     };
     motion.addEventListener("change", stopMotion);
     return () => {
       observer.disconnect();
-      sceneObserver.disconnect();
-      animations.forEach((animation) => animation.cancel());
-      accents.forEach((accent) => accent.remove());
+      animations.forEach(animation => animation.cancel());
       motion.removeEventListener("change", stopMotion);
     };
   }, []);
