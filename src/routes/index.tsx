@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Divulgar, Hero, Produtos } from "@/components/sales/PartOne";
@@ -32,8 +33,49 @@ function MidCta() {
 }
 
 function Index() {
+  const pageRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const page = pageRef.current;
+    if (!page || typeof IntersectionObserver === "undefined" || typeof Element.prototype.animate !== "function") return;
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const animations = new Set<Animation>();
+    const targets = Array.from(page.querySelectorAll<HTMLElement>(
+      ":scope > section > div > *, :scope > footer, :scope > div"
+    ));
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        observer.unobserve(entry.target);
+        if (motion.matches) continue;
+        const animation = entry.target.animate(
+          [
+            { opacity: 0.15, translate: "0 28px", scale: "0.985" },
+            { opacity: 1, translate: "0 0", scale: "1" },
+          ],
+          { duration: 850, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
+        );
+        animations.add(animation);
+        animation.onfinish = () => animations.delete(animation);
+      }
+    }, { threshold: 0, rootMargin: "0px 0px -35px 0px" });
+    targets.forEach((target) => observer.observe(target));
+    const stopMotion = () => {
+      if (motion.matches) {
+        animations.forEach((animation) => animation.cancel());
+        animations.clear();
+      }
+    };
+    motion.addEventListener("change", stopMotion);
+    return () => {
+      observer.disconnect();
+      animations.forEach((animation) => animation.cancel());
+      motion.removeEventListener("change", stopMotion);
+    };
+  }, []);
+
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main ref={pageRef} className="min-h-screen bg-background text-foreground">
       <Hero />
       <Produtos />
       <Divulgar />
